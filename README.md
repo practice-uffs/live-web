@@ -1,23 +1,22 @@
 <p align="center">
-    <img width="800" src=".github/logo.png" title="Logo do projeto"><br />
+    <img width="600" src=".github/logo.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2021?style=for-the-badge" title="Status do projeto">
-    <img src="https://img.shields.io/github/workflow/status/ccuffs/template/ci.uffs.cc?label=Build&logo=github&logoColor=white&style=for-the-badge" title="Status do build">
+    <img src="https://img.shields.io/github/workflow/status/practice-uffs/forms/ci.uffs.cc?label=Build&logo=github&logoColor=white&style=for-the-badge" title="Status do build">
 </p>
 
-# Título
+# Live
 
-Coloque uma descrição do projeto aqui. Geralmente essa descrição tem de duas a três linhas de tamanho. Ela deve dar uma visão geral sobre o que é o projeto, ex.: tecnologia usada, filosofia de existência, qual problema tenta-se resolver, etc. Se você precisa escrever mais que 3 linhas de descrição, crie subseções.
+O **Practice Live** é uma ferramenta para facilitar a criação e gerência transmissões ao vivo. O objetivo é permitir que participantes de um evento foquem no seu conteúdo, e não nos detalhes e aspectos técnicos de uma transmissão.
 
-> **IMPORTANTE:** coloque aqui alguma mensagem que é muito relevante aos usuários do projeto, se for o caso.
+> **IMPORTANTE:** se você deseja utilizar o sistema, o Practice Live está em funcionamento em [practice.uffs.edu.br/live](https://practice.uffs.edu.br/live).
 
 ## ✨ Features
 
-Aqui você pode colocar uma screenshot do produto resultante desse projeto. Descreva também suas features usando uma lista:
+O live possui um conjunto considerável de features:
 
-* Fácil integração;
-* Poucas dependências;
-* Utiliza um template lindo para organizar o `README`;
-* Possui ótima documentação e testes.
+* Autenticação a partir do [idUFFS](https://id.uffs.edu.br).
+* Utilização 100% web (não é necessário instalar softwares).
+* Transmissão ao vido para Youtube.
 
 ## 🚀 Começando
 
@@ -37,6 +36,8 @@ Você precisa de várias extensões PHP instaladas também:
 sudo apt install php-cli php-mbstring php-zip php-xml php-curl
 ```
 
+O mural, desde sua versão `v2`, exige `php >= 8.0`.
+
 ### 2. Configuração
 
 Feito a instalação das dependências, é necessário obter uma cópia do projeto. A forma recomendada é clonar o repositório para a sua máquina.
@@ -44,10 +45,10 @@ Feito a instalação das dependências, é necessário obter uma cópia do proje
 Para isso, rode:
 
 ```
-git clone --recurse-submodules https://github.com/practice-uffs/template && cd template
+git clone --recurse-submodules https://github.com/practice-uffs/forms && cd mural
 ```
 
-Isso criará e trocará para a pasta `template` com o código do projeto.
+Isso criará e trocará para a pasta `mural` com o código do projeto.
 
 #### 2.1 PHP
 
@@ -87,13 +88,19 @@ Criação as tabelas do banco de dados com as migrações esquemas:
 php artisan migrate
 ```
 
-Por fim execute o comando abaixo para a geração da chave de autenticação da aplicação:
+Rode os seeders (que crias as categorias/serviços padrão):
+
+```
+php artisan db:seed
+```
+
+Gere aa chave de autenticação da aplicação:
 
 ```
 php artisan key:generate
 ```
 
-Gere os recursos JavaScript e CSS:
+Por fim gere os recursos JavaScript e CSS:
 
 ```
 npm run dev
@@ -110,7 +117,20 @@ Depois de seguir todos os passos de instalação, inicie o servidor do Laravel:
 ```
 php artisan serve
 ```
+
 Após isso a aplicação estará rodando na porta 8000 e poderá ser acessada em [localhost:8000](http://localhost:8000).
+
+Para que as notificações em tempo real funcionem, você precisa rodar as filas (queues) do Laravel
+
+```
+php artisan queue:work
+```
+
+E também o servidor websocket (use outra sessão/aba do terminal para isso):
+
+```
+php artisan websockets:serve
+```
 
 #### 3.2 Utilização da API
 
@@ -129,7 +149,7 @@ curl -H 'Accept: application/json' -H "Authorization: Bearer c08cbbfd6eefc83ac6d
 
 ## 🤝 Contribua
 
-Sua ajuda é muito bem-vinda, independente da forma! Confira o arquivo [CONTRIBUTING.md](CONTRIBUTING.md) para conhecer todas as formas de contribuir com o projeto. Por exemplo, [sugerir uma nova funcionalidade](https://github.com/ccuffs/template/issues/new?assignees=&labels=&template=feature_request.md&title=), [reportar um problema/bug](https://github.com/ccuffs/template/issues/new?assignees=&labels=bug&template=bug_report.md&title=), [enviar um pull request](https://github.com/ccuffs/hacktoberfest/blob/master/docs/tutorial-pull-request.md), ou simplemente utilizar o projeto e comentar sua experiência.
+Sua ajuda é muito bem-vinda, independente da forma! Confira o arquivo [CONTRIBUTING.md](CONTRIBUTING.md) para conhecer todas as formas de contribuir com o projeto. Por exemplo, [sugerir uma nova funcionalidade](https://github.com/practice-uffs/forms/issues/new?assignees=&labels=&template=feature_request.md&title=), [reportar um problema/bug](https://github.com/practice-uffs/forms/issues/new?assignees=&labels=bug&template=bug_report.md&title=), [enviar um pull request](https://github.com/ccuffs/hacktoberfest/blob/master/docs/tutorial-pull-request.md), ou simplemente utilizar o projeto e comentar sua experiência.
 
 Veja o arquivo [ROADMAP.md](ROADMAP.md) para ter uma ideia de como o projeto deve evoluir.
 
@@ -148,3 +168,6 @@ Abaixo está uma lista de links interessantes e projetos similares:
 
 * [Universidade Federal da Fronteira Sul](https://www.uffs.edu.br)
 * [Programa Practice](https://practice.uffs.cc)
+* [Practice Mural](https://github.com/practice-uffs/mural)
+* [Practice Maker](https://github.com/practice-uffs/maker)
+* [Practice Bot](https://github.com/practice-uffs/bot)
