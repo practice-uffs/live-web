@@ -5,18 +5,9 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Room extends Model
 {
     use HasFactory;
-
-    /**
-     * Eager load the following always
-     */
-    protected $with = [
-        'user',
-        'transmissions',
-        'rooms',
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -25,11 +16,10 @@ class Event extends Model
      */
     protected $fillable = [
         'id',
-        'user_id',
-        'title',
-        'description',
+        'event_id',
+        'type',
+        'url',
         'status',
-        'hash',
     ];
 
     /**
@@ -65,24 +55,8 @@ class Event extends Model
     /**
      * Get the user associated with the order.
      */
-    public function user()
+    public function event()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the transmissions associated with the event.
-     */
-    public function transmissions()
-    {
-        return $this->hasMany(Transmission::class);
-    }
-
-    /**
-     * Get the rooms associated with the event, e.g. Google Meet.
-     */
-    public function room()
-    {
-        return $this->hasMany(Room::class);
+        return $this->belongsTo(Event::class);
     }
 }
