@@ -3,10 +3,9 @@
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\FormController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TestController;
 
 use Illuminate\Support\Facades\Route;
@@ -50,9 +49,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/inicial', [HomeController::class, 'index'])->name('home');
-    Route::get('/criar', [FormController::class, 'create'])->name('form.create');
-    Route::get('/editar/{form}', [FormController::class, 'edit'])->name('form.edit');
-    Route::get('/resultado/{form}/{hash}', [FormController::class, 'result'])->name('form.result');
+    Route::get('/criar', [EventController::class, 'create'])->name('event.create');
+    Route::get('/editar/{form}', [EventController::class, 'edit'])->name('event.edit');
 
     // Admin
     Route::group(['middleware' => 'check.admin'], function () {
@@ -64,7 +62,6 @@ Route::group(['middleware' => 'auth'], function () {
 // Rotas públicas
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::view('/newsletter/subscribed', 'newsletter.subscribed')->name('newsletter.subscribed');
-Route::get('/{form}/{hash}', [ReplyController::class, 'create'])->name('reply.create');
 
 // Corrige um bug no upload de arquivos no Livewire
 Route::post('/livewire/upload-file', [FileUploadHandler::class, 'handle'])->name('livewire.upload-file')->middleware(config('livewire.middleware_group', ''));

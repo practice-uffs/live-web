@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\Order;
+use App\Model\Event;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -118,8 +118,8 @@ class User extends Authenticatable implements JWTSubject
     /**
      * Get all of the user's comments.
      */
-    public function forms()
+    public function events()
     {
-        return $this->hasMany(Form::class);
+        return $this->hasMany(Event::class);
     }
 }

@@ -13,15 +13,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // get all forms from the current user orderded by id desc
-        $forms = auth()->user()->forms()->orderBy('id', 'desc')->get();
+        $events = auth()->user()->events()->orderBy('id', 'desc')->get();
 
-        if ($forms == null) {
-            $forms = [];
+        if ($events == null) {
+            $events = [];
         }
 
         return view('home', [
-            'forms' => $forms
+            'events' => $events
         ]);
     }
 }

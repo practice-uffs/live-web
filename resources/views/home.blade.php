@@ -13,7 +13,7 @@
 
                 <div data-aos="fade-up" data-aos-delay="600">
                     <div class="text-center text-lg-start">
-                      <a href="{{ route('form.create') }}" class="btn-get-started d-inline-flex align-items-center justify-content-center align-self-center">
+                      <a href="{{ route('event.create') }}" class="btn-get-started d-inline-flex align-items-center justify-content-center align-self-center">
                           <span class="">CRIAR</span>
                           <i class="bi bi-arrow-right-circle"></i>
                       </a>
@@ -25,7 +25,7 @@
 </section>
 
 <div class="container">
-    @if (count($forms) > 0)
+    @if (count($events) > 0)
         <header class="section-header">
             <h2>Suas criações</h2>
         </header>
@@ -42,23 +42,22 @@
                         </tr>
                     </thead>                
                     <tbody>
-                        @foreach ($forms as $form)
+                        @foreach ($events as $event)
                             <tr>
                                 <td>
-                                    <a href="{{ route('form.edit', [$form->id]) }}" class="btn btn-primary">Ver</a>
+                                    <a href="{{ route('event.edit', [$event->id]) }}" class="btn btn-primary">Ver</a>
                                 </td>                                
                                 <td>
-                                    {{ $form->title ?? 'Questionário '.$form->id }}
+                                    {{ $event->title ?? 'Questionário '.$event->id }}
                                 </td>
                                 <td>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                                     </svg>
-                                    {{ $form->replies()->count() }}
                                 </td>
                                 <td>
-                                    <div>{{ $form->created_at }}</div>
-                                    <div class="text-sm opacity-50">Última atualização: {{ $form->updated_at }}</div>
+                                    <div>{{ $event->created_at }}</div>
+                                    <div class="text-sm opacity-50">Última atualização: {{ $event->updated_at }}</div>
                                 </td>
                             </tr>
                         @endforeach

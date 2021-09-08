@@ -2,7 +2,7 @@
     <div class="container-lg d-flex align-items-center justify-content-between">
         <a href="{{ route('index') }}" class="logo d-flex align-items-center">
             <img src="{{ asset('img/logo-practice.png') }}" alt="">
-            <span>Forms</span>
+            <span>Live</span>
         </a>
 
         <nav id="navbar" class="navbar">
@@ -51,10 +51,6 @@
                 @endauth
                 
                 @guest
-                    @if (@$layout_header_simplified == false)
-                        <li><a href="{{ route('form.create') }}" class="nav-link @if (Route::is('form.create')) active @endif">Criar</a></li>
-                    @endif
-                    
                     <li><a href="{{ route('login') }}" class="getstarted">Entrar <i class="bi bi-box-arrow-in-right"></i></a></li>
                 @endguest
             </ul>
