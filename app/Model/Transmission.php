@@ -19,6 +19,7 @@ class Transmission extends Model
         'event_id',
         'status',
         'type',
+        'url',
         'key',
         'preview'
     ];

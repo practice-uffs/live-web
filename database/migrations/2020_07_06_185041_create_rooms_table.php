@@ -18,8 +18,8 @@ class CreateRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('event_id');
             $table->string('type');
-            $table->string('url');
-            $table->string('status');
+            $table->text('url');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

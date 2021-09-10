@@ -10,4 +10,4 @@ window.FilePondPluginImagePreview = FilePondPluginImagePreview;
 import ApexCharts from 'apexcharts'
 window.ApexCharts = ApexCharts;
 
-require('./practice-form');
+require('./practice-live');

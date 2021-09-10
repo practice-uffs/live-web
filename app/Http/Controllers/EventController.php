@@ -21,12 +21,30 @@ class EventController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+
         $event = Event::create([
             'title' => '',
             'user_questions' => '',
             'questions' => [],
-            'user_id' => Auth::user()->id,
+            'status' => 'idle',
+            'user_id' => $user->id,
             'hash' => Str::random(32),
+        ]);
+
+        $event->transmissions()->create([
+            'user_id' => $user->id,
+            'type' => 'youtube',
+            'url' => 'https://www.youtube.com/watch?v=xxx',
+            'key' => '',
+            'status' => 'idle',
+        ]);
+
+        $event->rooms()->create([
+            'user_id' => $user->id,
+            'type' => 'google_meet',
+            'url' => 'https://meet.google.com/xxx',
+            'status' => 'idle',
         ]);
 
         return redirect(route('event.edit', $event));

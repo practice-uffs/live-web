@@ -17,10 +17,11 @@ class CreateTransmissionsTable extends Migration
         Schema::create('transmissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('event_id');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->string('type');
+            $table->text('url')->default('');
             $table->text('key')->default('');
-            $table->text('preview');
+            $table->text('preview')->nullable();
             $table->timestamps();
         });
     }

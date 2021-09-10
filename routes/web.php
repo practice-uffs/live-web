@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Livewire\FilePreviewHandler;
 use App\Http\Controllers\Livewire\FileUploadHandler;
+use App\Http\Controllers\StreamerTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/inicial', [HomeController::class, 'index'])->name('home');
     Route::get('/criar', [EventController::class, 'create'])->name('event.create');
-    Route::get('/editar/{form}', [EventController::class, 'edit'])->name('event.edit');
+    Route::get('/editar/{event}', [EventController::class, 'edit'])->name('event.edit');
+
+    if (App::environment('local')) {
+        Route::get('/testar/{event}', [StreamerTestController::class, 'index'])->name('streamer.test');
+    }    
 
     // Admin
     Route::group(['middleware' => 'check.admin'], function () {

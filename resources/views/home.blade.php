@@ -14,7 +14,7 @@
                 <div data-aos="fade-up" data-aos-delay="600">
                     <div class="text-center text-lg-start">
                       <a href="{{ route('event.create') }}" class="btn-get-started d-inline-flex align-items-center justify-content-center align-self-center">
-                          <span class="">CRIAR</span>
+                          <span class="">Transmitir</span>
                           <i class="bi bi-arrow-right-circle"></i>
                       </a>
                     </div>
@@ -48,7 +48,7 @@
                                     <a href="{{ route('event.edit', [$event->id]) }}" class="btn btn-primary">Ver</a>
                                 </td>                                
                                 <td>
-                                    {{ $event->title ?? 'Questionário '.$event->id }}
+                                    {{ $event->title ?? 'Evento '.$event->id }}
                                 </td>
                                 <td>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

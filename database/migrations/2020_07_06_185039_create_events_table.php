@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->text('description')->default('');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->string('hash');
             $table->timestamps();
         });

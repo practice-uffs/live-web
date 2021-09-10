@@ -81,7 +81,7 @@ class Event extends Model
     /**
      * Get the rooms associated with the event, e.g. Google Meet.
      */
-    public function room()
+    public function rooms()
     {
         return $this->hasMany(Room::class);
     }
