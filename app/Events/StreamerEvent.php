@@ -7,10 +7,11 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OBSEvent implements ShouldBroadcast
+class StreamerEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,7 +24,7 @@ class OBSEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($event, $params=NULL)
+    public function __construct($event, $params=null)
     {
         $this->event = $event;
         $this->params = $params;
@@ -36,6 +37,11 @@ class OBSEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('obs-event');
+        return new Channel('streamer-channel');
+    }
+
+    public function broadcastAs()
+    {
+        return $this->event;
     }
 }
