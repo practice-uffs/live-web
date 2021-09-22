@@ -31,4 +31,16 @@ class Edit extends Component
 
         $this->update();        
     }
+
+    public function initTransmission() {
+        // event();
+    }
+
+    public function startTransmission() {
+        // event();
+    }
+
+    public function stopTransmission() {
+        // event();
+    }
 }
